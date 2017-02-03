@@ -1,13 +1,18 @@
 {
-  "manifest_version": 2,
-
   "name": "Documentivly",
+  "manifest_version": 2,
   "description": "adds a wiki layer ontop of google drive and docs",
   "version": "0.0.01",
-
+  "permissions": ["identity", "https://accounts.google.com/*", "https://www.googleapis.com/*"],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
     "default_title": "click here!"
+  },
+  "oauth2": {
+    // client_id below is specifc to the application key. Follow the
+    // documentation to obtain one for your app.
+    "client_id": "66116113965-nlnrgbdiedqgcsm5vo859h4qk49t0tl8.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/plus.login","https://www.googleapis.com/auth/drive"]
   }
 }
