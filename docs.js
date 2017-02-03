@@ -26,7 +26,7 @@ var googleDriveLoader = (function() {
         disableButton(revoke_button);
         break;
       case STATE_ACQUIRING_AUTHTOKEN:
-        console.log('Acquiring token...');
+        sampleSupport.log('Acquiring token...');
         disableButton(signin_button);
         disableButton(xhr_button);
         disableButton(revoke_button);
@@ -63,10 +63,10 @@ var googleDriveLoader = (function() {
     // @see http://developer.chrome.com/apps/identity.html#method-getAuthToken
     chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
       if (chrome.runtime.lastError) {
-        console.log(chrome.runtime.lastError);
+        sampleSupport.log(chrome.runtime.lastError);
         changeState(STATE_START);
       } else {
-        console.log('Token acquired:'+token+
+        sampleSupport.log('Token acquired:'+token+
           '. See chrome://identity-internals for details.');
         changeState(STATE_AUTHTOKEN_ACQUIRED);
       }
@@ -86,7 +86,7 @@ var googleDriveLoader = (function() {
   function onListFilesInfoFetched(error, status, response) {
     if (!error && status == 200) {
       changeState(STATE_AUTHTOKEN_ACQUIRED);
-      console.log(response);
+      sampleSupport.log(response);
       var user_info = JSON.parse(response);
       populateUserInfo(user_info);
     } else {
